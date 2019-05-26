@@ -309,7 +309,7 @@ Haxy.prototype.aimReset = function () {
 	window.control.camLookAt(null);
 	window.control.aimTarget = null;
 	window.control.target = null;
-	1 === this.settings.autoAim && (window.control.mouseDownR = 0, window.control.mouseDownL = 0)
+	2 === this.settings.autoAim && (window.control.mouseDownR = 0, window.control.mouseDownL = 0)
 };
 Haxy.prototype.aimDelay = function () {
 	var a = this.weapons[this.me.weapon.name];
