@@ -277,11 +277,45 @@ Haxy.prototype.autoShot = function (a) {
 		else if (0 === this.me.ammos[this.me.weaponIndex]) this.aimReset();
 	else switch (window.control.camLookAt(a.x, a.y + a.height + this.aimCompensator(a), a.z), this.settings.autoAim) {
 		case 1:
-		        if (this.me.didShoot) {
+        if (this.control.mouseDownL === 1) {
+            this.control.mouseDownL = 0;
+            this.control.mouseDownR = 0;
+        }
+        if (this.me.recoilForce > 0.01) {
+            return false;
+        }
+        this.lookAt(target);
+        if (this.control.mouseDownR !== 1) {
+            this.control.mouseDownR = 1;
+        } else {
+            this.control.mouseDownL = this.control.mouseDownL === 1 ? 0 : 1
+        }
+        return true;
+    }
+    runQuickscoper(target) {
+        if (this.me.didShoot) {
             this.canShoot = false;
             setTimeout(() => {
                 this.canShoot = true;
             }, this.me.weapon.rate);
+        }
+        if (this.control.mouseDownL === 1) {
+            this.control.mouseDownL = 0;
+            this.control.mouseDownR = 0;
+            this.scopingOut = true;
+        }
+        if (this.me.aimVal === 1) {
+            this.scopingOut = false;
+        }
+        if (this.scopingOut || !this.canShoot || this.me.recoilForce > 0.01) {
+            return false;
+        }
+        this.lookAt(target);
+        if (this.control.mouseDownR === 0) {
+            this.control.mouseDownR = 1;
+        }
+        else if (this.me.aimVal < 0.2) {
+            this.control.mouseDownL = 1 - this.control.mouseDownL;
         }
 	} else this.aimReset()
 };
