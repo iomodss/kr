@@ -1,5 +1,5 @@
 var Haxy = function () {
-	this.past = this.maps = this.game = this.inputs = this.camera = this.mapInfo = null;
+	this.past = this.maps = this.game = this.inputs = this.camera = this.mapInfo = null;this.scopingOut = false;this.canShoot = true;
 	this.isSliding = !1;
 	this.weapons = {
 		Revolver: {
@@ -283,12 +283,25 @@ if (this.me.didShoot) {
                 this.canShoot = true;
             }, this.me.weapon.rate);
         }
+        if (this.control.mouseDownL === 1) {
+            this.control.mouseDownL = 0;
+            this.control.mouseDownR = 0;
+            this.scopingOut = true;
+        }
+        if (this.me.aimVal === 1) {
+            this.scopingOut = false;
+        }
+        if (this.scopingOut || !this.canShoot || this.me.recoilForce > 0.01) {
+            return false;
+        }
         if (window.control.mouseDownR === 0) {
             window.control.mouseDownR = 1;
         }
         else if (this.me.aimVal < 0.2) {
             window.control.mouseDownL = 1 - window.control.mouseDownL;
         }
+			this.past && (new Date).getTime() - this.past <= this.aimDelay() ? this.aimReset() :
+				(window.control.mouseDownR = 1, .3 >= this.me.aimVal && (window.control.mouseDownL = 1, this.past = (new Date).getTime()))
 	} else this.aimReset()
 };
 Haxy.prototype.aimReset = function () {
