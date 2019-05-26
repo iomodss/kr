@@ -275,7 +275,7 @@ Haxy.prototype.autoShot = function (a) {
 	if (a && 0 !== this.settings.autoAim)
 		if (3 === this.settings.autoAim && 1 === this.me.aimVal || 4 === this.settings.autoAim && 0 === this.me.aimVal || this.getDist(this.me, a) > this.getRange()) window.control.aimTarget = null, window.control.target = null;
 		else if (0 === this.me.ammos[this.me.weaponIndex]) this.aimReset();
-	else switch (window.control.camLookAt(a.x, a.y + a.height + this.aimCompensator(a), a.z), this.settings.autoAim) {
+	else switch (window.control.camLookAt(a.x, a.y + a.height), this.settings.autoAim) {
 		case 1:
 if (this.me.didShoot) {
             this.canShoot = false;
@@ -297,12 +297,12 @@ if (this.me.didShoot) {
         if (window.control.mouseDownR === 0) {
             window.control.mouseDownR = 1;
         }
-        else if (this.me.aimVal < 0.5) {
+        else if (this.me.aimVal < 0.2) {
             window.control.mouseDownL = 1 - window.control.mouseDownL;
         }
 		case 2:
 			this.past && (new Date).getTime() - this.past <= this.aimDelay() ? this.aimReset() :
-				(window.control.mouseDownR = 1, .5 >= this.me.aimVal && (window.control.mouseDownL = 1, this.past = (new Date).getTime()))
+				(window.control.mouseDownR = 1, .3 >= this.me.aimVal && (window.control.mouseDownL = 1, this.past = (new Date).getTime()))
 	} else this.aimReset()
 };
 Haxy.prototype.aimReset = function () {
@@ -314,14 +314,6 @@ Haxy.prototype.aimReset = function () {
 Haxy.prototype.aimDelay = function () {
 	var a = this.weapons[this.me.weapon.name];
 	return a && a.d ? a.d : this.me.weapon.rate - 50
-};
-Haxy.prototype.aimCompensator = function (a) {
-	var b = this.getDist(this.me, a),
-		d = .01 > this.me.recoilAnimY ? .01 : this.me.recoilAnimY,
-		c = 700 <= b ? 700 : b,
-		e = this.weapons[this.me.weapon.name],
-		f = -this.settings.aimPosition;
-	return !e || .01 == d || 20 > b ? f - 2.5 * a.crouchVal - 7.5 * this.me.recoilAnimY : f + e.c[0] * (d - .01) * (e.c[1] * c + e.c[2]) + (e.c[3] * c + e.c[4])
 };
 Haxy.prototype.aimbot = function () {
 	var a = this,
