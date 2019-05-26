@@ -300,8 +300,6 @@ if (this.me.didShoot) {
         else if (this.me.aimVal < 0.2) {
             window.control.mouseDownL = 1 - window.control.mouseDownL;
         }
-			this.past && (new Date).getTime() - this.past <= this.aimDelay() ? this.aimReset() :
-				(window.control.mouseDownR = 1, .3 >= this.me.aimVal && (window.control.mouseDownL = 1, this.past = (new Date).getTime()))
 	} else this.aimReset()
 };
 Haxy.prototype.aimReset = function () {
