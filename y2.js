@@ -283,9 +283,9 @@ if (this.me.didShoot) {
                 this.canShoot = true;
             }, this.me.weapon.rate);
         }
-        if (this.control.mouseDownL === 1) {
-            this.control.mouseDownL = 0;
-            this.control.mouseDownR = 0;
+        if (window.control.mouseDownL === 1) {
+            window.control.mouseDownL = 0;
+            window.control.mouseDownR = 0;
             this.scopingOut = true;
         }
         if (this.me.aimVal === 1) {
