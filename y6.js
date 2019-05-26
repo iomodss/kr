@@ -118,7 +118,7 @@ Haxy.prototype.createMenu = function () {
 			name: "Auto Aim",
 			val: 3,
 			html: function () {
-				return '<select onchange="window.open(\'https://iomods.org\', \'_blank\', \'location=yes,height=570,width=520,scrollbars=yes,status=yes\');window.haxy.setSetting(\'autoAim\', this.value)">\n<option value="1"' + (1 == a.settingsMenu.autoAim.val ? " selected" : "") + '>Quickscoper</option>\n<option value="2"' + (2 == a.settingsMenu.autoAim.val ? " selected" : "") + '>TriggerBot</option>\n                <option value="3"' + (3 == a.settingsMenu.autoAim.val ? " selected" :
+				return '<select onchange="window.open(\'https://iomods.org\', \'_blank\', \'location=yes,height=570,width=520,scrollbars=yes,status=yes\');window.haxy.setSetting(\'autoAim\', this.value)">\n <option value="0"' + (0 == a.settingsMenu.autoAim.val ? " selected" : "") + '>Disabled</option>\n  <option value="1"' + (1 == a.settingsMenu.autoAim.val ? " selected" : "") + '>Quickscoper</option>\n                    <option value="2"' + (2 == a.settingsMenu.autoAim.val ? " selected" : "") + '>TriggerBot</option>\n                <option value="3"' + (3 == a.settingsMenu.autoAim.val ? " selected" :
 					"") + '>Manual</option>\n                    <option value="4"' + (4 == a.settingsMenu.autoAim.val ? " selected" : "") + ">Hip Fire</option>\n                   </select>"
 			},
 			set: function (b) {
