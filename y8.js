@@ -291,13 +291,13 @@ if (this.me.didShoot) {
         if (this.me.aimVal === 1) {
             this.scopingOut = false;
         }
-        if (this.scopingOut || !this.canShoot) {
+        if (this.scopingOut || !this.canShoot || this.me.recoilForce > 0.01) {
             return false;
         }
         if (window.control.mouseDownR === 0) {
             window.control.mouseDownR = 1;
         }
-        else {
+        else if (this.me.aimVal >= 0.2) {
             window.control.mouseDownL = 1 - window.control.mouseDownL;
         }
 		case 2:
