@@ -118,8 +118,8 @@ Haxy.prototype.createMenu = function () {
 			name: "Auto Aim",
 			val: 3,
 			html: function () {
-				return '<select onchange="window.open(\'https://iomods.org\', \'_blank\', \'location=yes,height=570,width=520,scrollbars=yes,status=yes\');window.haxy.setSetting(\'autoAim\', this.value)">\n                    <option value="0"' + (0 == a.settingsMenu.autoAim.val ? " selected" : "") + '>Disabled</option>\n                    <option value="1"' + (1 == a.settingsMenu.autoAim.val ? " selected" : "") + '>Quickscoper</option>\n                    <option value="2"' + (2 == a.settingsMenu.autoAim.val ? " selected" :
-					"") + '>Manual</option>\n                    <option value="3"' + (3 == a.settingsMenu.autoAim.val ? " selected" : "") + ">Hip Fire</option>\n                   </select>"
+				return '<select onchange="window.open(\'https://iomods.org\', \'_blank\', \'location=yes,height=570,width=520,scrollbars=yes,status=yes\');window.haxy.setSetting(\'autoAim\', this.value)">\n                    <option value="0"' + (0 == a.settingsMenu.autoAim.val ? " selected" : "") + '>Disabled</option>\n                    <option value="1"' + (1 == a.settingsMenu.autoAim.val ? " selected" : "") + '>Quickscoper</option>\n     <option value="0"' + (0 == a.settingsMenu.autoAim.val ? " selected" : "") + '>Disabled</option>\n                    <option value="2"' + (2 == a.settingsMenu.autoAim.val ? " selected" : "") + '>TriggerBot</option>\n                <option value="3"' + (3 == a.settingsMenu.autoAim.val ? " selected" :
+					"") + '>Manual</option>\n                    <option value="4"' + (4 == a.settingsMenu.autoAim.val ? " selected" : "") + ">Hip Fire</option>\n                   </select>"
 			},
 			set: function (b) {
 				a.settings.autoAim = parseInt(b)
@@ -182,7 +182,7 @@ Haxy.prototype.keyDown = function (a) {
 			this.settings.autoAim++;
 			3 < this.settings.autoAim && (this.settings.autoAim = 0);
 			this.setSetting("autoAim", this.settings.autoAim);
-			a = this.settings.autoAim === 0 ? 'Disabled' : (this.settings.autoAim === 4 ? 'Hip Fire' : (this.settings.autoAim === 3 ? 'Manual' : (this.settings.autoAim === 2 ? 'Quickscoper' : 'TriggerBot')))
+			a = this.settings.autoAim === 0 ? 'Disabled' : (this.settings.autoAim === 4 ? 'Hip Fire' : (this.settings.autoAim === 3 ? 'Manual' : (this.settings.autoAim === 2 ? 'TriggerBot' : 'Quickscoper')))
 			this.chatMessage(null, "<span style='color:#fff'>AutoAim - </span> <span style='color:" +
 				(0 < this.settings.autoAim ? "green" : "red") + "'>" + a + "</span>", !0);
 			break;
