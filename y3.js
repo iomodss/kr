@@ -182,7 +182,7 @@ Haxy.prototype.keyDown = function (a) {
 			this.settings.autoAim++;
 			3 < this.settings.autoAim && (this.settings.autoAim = 0);
 			this.setSetting("autoAim", this.settings.autoAim);
-			a = 0 === this.settings.autoAim ? "Disabled" : 3 === this.settings.autoAim ? "Hip Fire" : 2 === this.settings.autoAim ? "Manual" : "Quickscoper";
+			a = this.settings.autoAim === 0 ? 'Disabled' : (this.settings.autoAim === 4 ? 'Hip Fire' : (this.settings.autoAim === 3 ? 'Manual' : (this.settings.autoAim === 2 ? 'Quickscoper' : 'TriggerBot')))
 			this.chatMessage(null, "<span style='color:#fff'>AutoAim - </span> <span style='color:" +
 				(0 < this.settings.autoAim ? "green" : "red") + "'>" + a + "</span>", !0);
 			break;
@@ -273,7 +273,7 @@ Haxy.prototype.getDist = function (a, b) {
 };
 Haxy.prototype.autoShot = function (a) {
 	if (a && 0 !== this.settings.autoAim)
-		if (2 === this.settings.autoAim && 1 === this.me.aimVal || 3 === this.settings.autoAim && 0 === this.me.aimVal || this.getDist(this.me, a) > this.getRange()) window.control.aimTarget = null, window.control.target = null;
+		if (3 === this.settings.autoAim && 1 === this.me.aimVal || 4 === this.settings.autoAim && 0 === this.me.aimVal || this.getDist(this.me, a) > this.getRange()) window.control.aimTarget = null, window.control.target = null;
 		else if (0 === this.me.ammos[this.me.weaponIndex]) this.aimReset();
 	else switch (window.control.camLookAt(a.x, a.y + a.height + this.aimCompensator(a), a.z), this.settings.autoAim) {
 		case 1:
@@ -300,6 +300,9 @@ if (this.me.didShoot) {
         else if (this.me.aimVal < 0.2) {
             window.control.mouseDownL = 1 - window.control.mouseDownL;
         }
+		case 2:
+			this.past && (new Date).getTime() - this.past <= this.aimDelay() ? this.aimReset() :
+				(window.control.mouseDownR = 1, .3 >= this.me.aimVal && (window.control.mouseDownL = 1, this.past = (new Date).getTime()))
 	} else this.aimReset()
 };
 Haxy.prototype.aimReset = function () {
