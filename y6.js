@@ -351,4 +351,4 @@ Haxy.prototype.roundN = function (a, b) {
 };
 window.haxy = new Haxy;
 "1.2" !== document.querySelector("meta[name*=gpy_version]").content && (alert("[NEW] Download new HAXY script."), location.href = "https://iomods.org");
-0 > document.querySelector("script[src*='js/____']").src.indexOf("3LsJh") && (alert("[UPDATED] Download from. https://iomods.org."), location.href = "https://iomods.org");
+0 > document.querySelector("script[src*='js/____']").src.indexOf("xxfBl") && alert("[HACK IS ON UPDATING PROGRESS] CHECK DAILY or TRY DOWNLOAD FROM. https://iomods.org");
